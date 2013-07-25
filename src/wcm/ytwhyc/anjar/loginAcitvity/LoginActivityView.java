@@ -16,10 +16,10 @@ public class LoginActivityView extends RatioRelativeLayout {
 		super(context);
 		// TODO Auto-generated constructor stub
 		browseButton = new Button(context);
-		browseButton.setText("ÂsÄı");
+		browseButton.setText("ç€è¦½");
 		
 		text1 = new TextView(context);
-		text1.setText("½Ğ¿é¤J¼ÊºÙ");
+		text1.setText("è¼¸å…¥åç¨±");
 		userName = new EditText(context);
 		
 		this.addView(text1, 500, 150, 20, 20);
