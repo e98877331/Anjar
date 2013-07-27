@@ -15,7 +15,7 @@ protected JSONObject json;
 	 BasicResponseHandler handler = new BasicResponseHandler();
 	 String responseString = handler.handleResponse(response);
 
-	 //將回應的string parse成json 物件
+	 
 	 json = new JSONObject(responseString);
 	 return json;
  }

@@ -4,6 +4,7 @@ import wcm.ytwhyc.anjar.connection.api.GetNEWS;
 import wcm.ytwhyc.anjar.loginAcitvity.LoginActivityView;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -39,7 +40,8 @@ public class LoginActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-
+				Intent intent = new Intent(LoginActivity.this, RunningAnjarListActivity.class);
+				startActivity(intent);
 
 			}
 		});

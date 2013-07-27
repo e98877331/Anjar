@@ -15,4 +15,9 @@ public class AnjarListItem {
 		this.imageUrl = imageUrl;
 	}
 	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return anjarID + " " + hostName+ " " + topic  + " " + hostMessage + " " + startTime+ " "+ lastUpdateTime+ " "+ imageUrl;
+	}
 }

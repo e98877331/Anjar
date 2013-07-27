@@ -45,14 +45,14 @@ abstract public class BaseRequest {
 	 
 	 
 	 
-	 public void setParamPair(String key, String value)
+	 public void addParamPair(String key, String value)
 	 {
 		 nameValuePairs.add(new BasicNameValuePair(key, value));
 	 }
      
 	 protected HttpResponse executeForHttpResponse() throws Exception
 	 {
-		 httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+		 httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs,"UTF-8"));
 		 return httpclient.execute(httppost);
 	 }
 }
