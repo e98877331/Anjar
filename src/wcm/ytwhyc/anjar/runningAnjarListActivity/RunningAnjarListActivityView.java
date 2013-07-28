@@ -3,7 +3,9 @@ package wcm.ytwhyc.anjar.runningAnjarListActivity;
 import wcm.ytwhyc.ratiofixer.RatioRelativeLayout;
 import android.content.Context;
 import android.graphics.Color;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class RunningAnjarListActivityView extends RatioRelativeLayout{
@@ -20,8 +22,13 @@ public class RunningAnjarListActivityView extends RatioRelativeLayout{
 		title.setText("正在進行的安價");
 		this.addView(title, 748, 100, 10,10 );
 		
+//		LinearLayout ll = new LinearLayout(context);
+//		this.addView(ll,748, 1110, 10, 120);
 	
 		listView = new ListView(context);
+		
+//		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+//		ll.addView(listView,lp);
 		this.addView(listView, 748, 1110, 10, 120);
 		
 		

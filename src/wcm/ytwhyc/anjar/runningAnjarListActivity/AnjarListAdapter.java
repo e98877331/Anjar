@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import wcm.ytwhyc.anjar.datatype.AnjarListItem;
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -41,7 +42,7 @@ public class AnjarListAdapter extends BaseAdapter{
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
-		
+		Log.e("adapter","postion: "+Integer.toString( position));
 		if(convertView == null)
 		{
 		  convertView = new AnjarListItemLayout(mContext, mList.get(position));	
