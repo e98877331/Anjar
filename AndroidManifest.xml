@@ -26,7 +26,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="RunningAnjarListActivity"></activity>
+        <activity android:name="RunningAnjarListActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" ></activity>
+        <activity android:name="StaticAnjarActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" ></activity>
         
     </application>
        

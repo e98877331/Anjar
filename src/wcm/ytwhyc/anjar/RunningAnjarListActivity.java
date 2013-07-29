@@ -8,6 +8,7 @@ import wcm.ytwhyc.anjar.runningAnjarListActivity.AnjarListAdapter;
 import wcm.ytwhyc.anjar.runningAnjarListActivity.RunningAnjarListActivityView;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -46,6 +47,9 @@ public class RunningAnjarListActivity extends Activity {
 				// TODO Auto-generated method stub
 				
 				//Log.e(TAG,mAnjarList.get(position).toString());
+				Intent intent = new Intent(getBaseContext(), StaticAnjarActivity.class);
+				intent.putExtra("anjar_id", mAnjarList.get(position).anjarID);
+				startActivity(intent);
 			}
 		});
 		
