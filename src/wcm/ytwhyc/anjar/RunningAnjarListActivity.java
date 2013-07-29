@@ -14,16 +14,18 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.FrameLayout.LayoutParams;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 public class RunningAnjarListActivity extends Activity {
-
+	
+	private static final String TAG = "RunningAnjarListActivity";
+	
 	RunningAnjarListActivityView mView;
 	ListView mainListView;
-	
+	ArrayList<AnjarListItem> mAnjarList;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,19 @@ public class RunningAnjarListActivity extends Activity {
 		mView.setBackgroundColor(Color.WHITE);
 
 		mainListView = mView.listView;
+		mainListView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View arg1, int position,
+					long id) {
+				// TODO Auto-generated method stub
+				
+				//Log.e(TAG,mAnjarList.get(position).toString());
+			}
+		});
+		
+
+		
 		
 		LayoutParams layoutParams = new LayoutParams(
 				android.view.ViewGroup.LayoutParams.MATCH_PARENT,
@@ -62,10 +77,10 @@ public class RunningAnjarListActivity extends Activity {
 				try {
 					GetAnjarList gn = new GetAnjarList("3");
 					gn.execute();
-					ArrayList<AnjarListItem> list = gn.parseJson();
-					Log.e("LOGinACTIVIYT", list.toString());
+					mAnjarList = gn.parseJson();
+					Log.e("LOGinACTIVIYT", mAnjarList.toString());
 					
-					final AnjarListAdapter adapter = new AnjarListAdapter(RunningAnjarListActivity.this, list);
+					final AnjarListAdapter adapter = new AnjarListAdapter(RunningAnjarListActivity.this, mAnjarList);
 					runOnUiThread(new  Runnable() {
 						public void run() {
 							
