@@ -6,14 +6,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class AnjarItem {
+public class AnjarPage {
 
-	String anjarPageNumber,hostMessage;
-	Reply selectedReply;
-	ArrayList<String> imageURLs;
-	ArrayList<Reply> allReplys; 
+	public String anjarPageNumber,hostMessage;
+	public Reply selectedReply;
+	public ArrayList<String> imageURLs;
+	public ArrayList<Reply> allReplys; 
 	
-	public AnjarItem(JSONObject jobj) throws JSONException
+	public AnjarPage(JSONObject jobj) throws JSONException
 	{
 		imageURLs= new ArrayList<String>();
         allReplys = new ArrayList<Reply>();

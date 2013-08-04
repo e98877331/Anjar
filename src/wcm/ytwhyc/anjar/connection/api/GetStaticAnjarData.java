@@ -7,7 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import wcm.ytwhyc.anjar.connection.JSONRequest;
-import wcm.ytwhyc.anjar.datatype.AnjarItem;
+import wcm.ytwhyc.anjar.datatype.AnjarPage;
 import wcm.ytwhyc.anjar.datatype.AnjarListItem;
 
 public class GetStaticAnjarData extends JSONRequest {
@@ -24,15 +24,15 @@ public class GetStaticAnjarData extends JSONRequest {
 	}
 	
 
-	public ArrayList<AnjarItem> parseJson() throws JSONException
+	public ArrayList<AnjarPage> parseJson() throws JSONException
 	{
 		//AnjarListItem res = new AnjarListItem(json.getString(name));
-        ArrayList<AnjarItem> retArrList = new ArrayList<AnjarItem>();
+        ArrayList<AnjarPage> retArrList = new ArrayList<AnjarPage>();
 		JSONArray ja = json.getJSONArray("PageList");
 	    
 	    for(int i = 0; i< ja.length();i++)
 	    {
-	       retArrList.add(new AnjarItem(((JSONObject)ja.get(i))));
+	       retArrList.add(new AnjarPage(((JSONObject)ja.get(i))));
 	      
 	    }
 		
