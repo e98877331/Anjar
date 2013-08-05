@@ -7,9 +7,14 @@ import wcm.ytwhyc.anjar.datatype.AnjarPage;
 import wcm.ytwhyc.anjar.staticAnjarActivity.StaticAnjarPage;
 import wcm.ytwhyc.ratiofixer.RatioRelativeLayout;
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.FrameLayout.LayoutParams;
 
 public class StaticAnjarActivity extends Activity {
@@ -17,16 +22,17 @@ public class StaticAnjarActivity extends Activity {
 	private static final String TAG = "StaticAnjarActivity";
 	
 	ArrayList<AnjarPage> mPages;
-	
+    int currentPage = 0;
+    
+	Button mPrevBtn,mNextBtn;
 	RatioRelativeLayout mView;
-	
 	StaticAnjarPage mPageView;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		mView = new RatioRelativeLayout(this);
 		mView.setBackgroundColor(Color.GRAY);
 
@@ -40,25 +46,72 @@ public class StaticAnjarActivity extends Activity {
 		
 		mView.addView(mPageView,768,1100,0,0);
 		
+		mPrevBtn = new Button(this);
+		mPrevBtn.setText("previous");
+		mPrevBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+			 if(currentPage > 0 && mPages!=null)
+			 {
+				 mPageView.setData(mPages.get(--currentPage));
+			 }
+			}
+		});
+		
+		mNextBtn = new Button(this);
+		mNextBtn.setText("next");
+		mNextBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+			   if(currentPage < mPages.size() -1 && mPages!= null)
+			   {
+				   mPageView.setData(mPages.get(++currentPage));
+			   }
+			}
+		});
+		
+		
+		mView.addView(mPrevBtn, 200, 100, 20, 1130);
+		mView.addView(mNextBtn, 200, 100, 548, 1130);
+
+		String anjarID =getIntent().getExtras().getString("anjarID");
+        init(anjarID);
+		
+	}
+	
+	
+	
+	public void init(final String anjarID)
+	{
+		final ProgressDialog pg = ProgressDialog.show(StaticAnjarActivity.this,"讀取中","請稍候");
+		
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				GetStaticAnjarData gsad = new GetStaticAnjarData("1");
+				GetStaticAnjarData gsad = new GetStaticAnjarData(anjarID);
 				try {
 					gsad.execute();
 					mPages= gsad.parseJson();
 					//Log.e(TAG,item.toString());
-					mPageView.setData(mPages.get(0));
+					
+					runOnUiThread(new Runnable() {
+						public void run() {
+							
+							mPageView.setData(mPages.get(0));
+						}
+					});
+					
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				pg.dismiss();
 			}
 		}).start();
-		
-
-		
 	}
-	
 }

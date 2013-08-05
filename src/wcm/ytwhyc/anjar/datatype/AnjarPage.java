@@ -22,7 +22,9 @@ public class AnjarPage {
 		
 		anjarPageNumber = jobj.getString("AnjarPageNumber");
 		hostMessage = jobj.getString("HostMessage");
+		
 		selectedReply  = new Reply(jobj.getJSONObject("SelectedReply"));
+		
 		JSONArray imgarr = jobj.getJSONArray("ImageUrls");
 		for(int i = 0; i< imgarr.length();i++)
 		{
