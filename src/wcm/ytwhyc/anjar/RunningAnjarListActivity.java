@@ -48,7 +48,7 @@ public class RunningAnjarListActivity extends Activity {
 				
 				//Log.e(TAG,mAnjarList.get(position).toString());
 				Intent intent = new Intent(getBaseContext(), StaticAnjarActivity.class);
-				intent.putExtra("anjar_id", mAnjarList.get(position).anjarID);
+				intent.putExtra("anjarID", mAnjarList.get(position).anjarID);
 				startActivity(intent);
 			}
 		});

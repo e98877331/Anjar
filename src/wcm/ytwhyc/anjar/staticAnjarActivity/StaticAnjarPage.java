@@ -47,11 +47,8 @@ public class StaticAnjarPage extends RelativeLayout {
 	
 	public void setData(final AnjarPage pPage)
 	{
-		((Activity)mContext).runOnUiThread(new Runnable() {
-			
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
+
+				clear();
 				
 				mSelReply.setText(pPage.selectedReply.userName+ ":" + pPage.selectedReply.content);
 				curImage = pPage.imageURLs.get(0);
@@ -63,10 +60,15 @@ public class StaticAnjarPage extends RelativeLayout {
 							mImage.setImageBitmap(loadedImage);
 					}
 				});
-			}
-		});
+			
+
 	
 		
+	}
+	
+	public void clear()
+	{
+		mImage.setImageBitmap(null);
 	}
 
 }
