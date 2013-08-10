@@ -23,8 +23,10 @@ public class StaticAnjarPage extends RelativeLayout {
 	TextView mSelReply;
 	ImageView mImage;
 	TextView mOtherReply;
-	
+	AnjarPage mPage;
 	String curImage;
+	
+	AllReplysList mReplysView;
 	
 	public StaticAnjarPage(Context context,RatioFixer pRatioFixer) {
 		super(context);
@@ -36,7 +38,20 @@ public class StaticAnjarPage extends RelativeLayout {
       	mSelReply = new TextView(context);
       	mImage = new ImageView(context);
       	mOtherReply = new TextView(context);
-         mOtherReply.setText("Show all replys");  	
+         mOtherReply.setText("Show all replys");
+         mOtherReply.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				if(mReplysView == null && mPage != null)
+				{
+					mReplysView = new AllReplysList(mContext, mRatioFixer, mPage.allReplys);
+					StaticAnjarPage.this.addView(mReplysView, mRatioFixer.getLayoutParam(768, 1230, 0, 0));
+				}
+			}
+		});
+         
       	
       	this.addView(mSelReply,mRatioFixer.getLayoutParam(728, 150, 20, 30));
       	this.addView(mImage,mRatioFixer.getLayoutParam(728, 800, 20, 190));
@@ -45,11 +60,27 @@ public class StaticAnjarPage extends RelativeLayout {
 		//this.setData(anjarPage);
 	}
 	
+	
+	//returns true if any replysview dismissed
+    public boolean dismissReplysView()
+    {
+    	if(mReplysView != null)
+    	{
+    		mReplysView.dismiss();
+    		mReplysView = null;
+    		return true;
+    	}
+    	else
+    	{
+    		return false;
+    	}
+    }
+	
 	public void setData(final AnjarPage pPage)
 	{
 
 				clear();
-				
+				mPage = pPage;
 				mSelReply.setText(pPage.selectedReply.userName+ ":" + pPage.selectedReply.content);
 				curImage = pPage.imageURLs.get(0);
 				ImageLoader.getInstance().loadImage(pPage.imageURLs.get(0), new SimpleImageLoadingListener() {

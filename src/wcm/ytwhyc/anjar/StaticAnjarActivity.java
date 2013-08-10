@@ -83,7 +83,13 @@ public class StaticAnjarActivity extends Activity {
 		
 	}
 	
-	
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+	    //only dismiss ReplysView if any.
+		if(mPageView.dismissReplysView() == false)
+			super.onBackPressed();
+	}
 	
 	public void init(final String anjarID)
 	{
