@@ -56,6 +56,7 @@ public class StaticAnjarActivity extends Activity {
 			 if(currentPage > 0 && mPages!=null)
 			 {
 				 mPageView.setData(mPages.get(--currentPage));
+				 mPageView.dismissReplysView();
 			 }
 			}
 		});
@@ -70,6 +71,7 @@ public class StaticAnjarActivity extends Activity {
 			   if(currentPage < mPages.size() -1 && mPages!= null)
 			   {
 				   mPageView.setData(mPages.get(++currentPage));
+				   mPageView.dismissReplysView();
 			   }
 			}
 		});

@@ -25,6 +25,8 @@ public class StaticAnjarPage extends RelativeLayout {
 	TextView mOtherReply;
 	AnjarPage mPage;
 	String curImage;
+	int curImageIndex;
+	
 	
 	AllReplysList mReplysView;
 	
@@ -37,6 +39,16 @@ public class StaticAnjarPage extends RelativeLayout {
 		mRatioFixer = pRatioFixer;
       	mSelReply = new TextView(context);
       	mImage = new ImageView(context);
+      	mImage.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				curImageIndex = (curImageIndex+1)%mPage.imageURLs.size();
+				setImage(curImageIndex);
+			}
+		});
+      	
       	mOtherReply = new TextView(context);
          mOtherReply.setText("Show all replys");
          mOtherReply.setOnClickListener(new OnClickListener() {
@@ -82,19 +94,22 @@ public class StaticAnjarPage extends RelativeLayout {
 				clear();
 				mPage = pPage;
 				mSelReply.setText(pPage.selectedReply.userName+ ":" + pPage.selectedReply.content);
-				curImage = pPage.imageURLs.get(0);
-				ImageLoader.getInstance().loadImage(pPage.imageURLs.get(0), new SimpleImageLoadingListener() {
-					@Override
-					public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-						// Do whatever you want with Bitmap
-						if(StaticAnjarPage.this.curImage.equals(imageUri) && view != null)
-							mImage.setImageBitmap(loadedImage);
-					}
-				});
+				curImageIndex = 0;
+                setImage(curImageIndex);
 			
-
+	}
 	
-		
+	private void setImage(int index)
+	{
+		curImage = mPage.imageURLs.get(index);
+		ImageLoader.getInstance().loadImage(curImage, new SimpleImageLoadingListener() {
+			@Override
+			public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+				// Do whatever you want with Bitmap
+				if(StaticAnjarPage.this.curImage.equals(imageUri) && view != null)
+					mImage.setImageBitmap(loadedImage);
+			}
+		});
 	}
 	
 	public void clear()
