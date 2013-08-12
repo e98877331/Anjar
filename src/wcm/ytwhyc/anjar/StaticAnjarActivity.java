@@ -2,6 +2,7 @@ package wcm.ytwhyc.anjar;
 
 import java.util.ArrayList;
 
+import wcm.ytwhyc.anjar.connection.api.GetRunningAnjarData;
 import wcm.ytwhyc.anjar.connection.api.GetStaticAnjarData;
 import wcm.ytwhyc.anjar.datatype.AnjarPage;
 import wcm.ytwhyc.anjar.staticAnjarActivity.StaticAnjarPage;
@@ -11,6 +12,7 @@ import android.app.ProgressDialog;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -114,6 +116,11 @@ public class StaticAnjarActivity extends Activity {
 						}
 					});
 					
+					
+				GetRunningAnjarData grad = new GetRunningAnjarData(anjarID);
+					grad.execute();
+					GetRunningAnjarData.Result res = grad.parseJson();
+                    Log.e(TAG,res.toString());					
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
