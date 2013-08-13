@@ -9,6 +9,7 @@ import wcm.ytwhyc.anjar.staticAnjarActivity.StaticAnjarPage;
 import wcm.ytwhyc.ratiofixer.RatioRelativeLayout;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ public class StaticAnjarActivity extends Activity {
 	Button mPrevBtn,mNextBtn;
 	RatioRelativeLayout mView;
 	StaticAnjarPage mPageView;
+	String currentAnjarID;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +77,16 @@ public class StaticAnjarActivity extends Activity {
 				   mPageView.setData(mPages.get(++currentPage));
 				   mPageView.dismissReplysView();
 			   }
+			   else if(currentPage == mPages.size() -1)
+			   {
+					Intent intent = new Intent(StaticAnjarActivity.this, RunningAnjarActivity.class);
+					intent.putExtra("anjarID", currentAnjarID);
+					startActivity(intent);
+//					Intent intent = new Intent(getBaseContext(), StaticAnjarActivity.class);
+//					intent.putExtra("anjarID", mAnjarList.get(position).anjarID);
+//					startActivity(intent);
+					
+			   }
 			}
 		});
 		
@@ -82,8 +94,8 @@ public class StaticAnjarActivity extends Activity {
 		mView.addView(mPrevBtn, 200, 100, 20, 1130);
 		mView.addView(mNextBtn, 200, 100, 548, 1130);
 
-		String anjarID =getIntent().getExtras().getString("anjarID");
-        init(anjarID);
+		currentAnjarID =getIntent().getExtras().getString("anjarID");
+        init(currentAnjarID);
 		
 	}
 	

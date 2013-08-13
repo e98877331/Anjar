@@ -40,8 +40,8 @@ public class GetRunningAnjarData extends JSONRequest{
 	
 	public class Result
 	{
-		String currentPageNumber;
-		String targetFloor;
-		ArrayList<Reply> allReplys;
+		public String currentPageNumber;
+		public String targetFloor;
+		public ArrayList<Reply> allReplys;
 	}
 }
