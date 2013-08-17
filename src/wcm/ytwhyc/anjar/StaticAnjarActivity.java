@@ -81,7 +81,9 @@ public class StaticAnjarActivity extends Activity {
 			   {
 					Intent intent = new Intent(StaticAnjarActivity.this, RunningAnjarActivity.class);
 					intent.putExtra("anjarID", currentAnjarID);
-					startActivity(intent);
+					intent.putExtra("currentPageNumber", currentPage);
+					//startActivity(intent);
+					startActivityForResult(intent, 0);
 //					Intent intent = new Intent(getBaseContext(), StaticAnjarActivity.class);
 //					intent.putExtra("anjarID", mAnjarList.get(position).anjarID);
 //					startActivity(intent);
@@ -95,9 +97,24 @@ public class StaticAnjarActivity extends Activity {
 		mView.addView(mNextBtn, 200, 100, 548, 1130);
 
 		currentAnjarID =getIntent().getExtras().getString("anjarID");
-        init(currentAnjarID);
+        init(currentAnjarID,true);
 		
 	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		if(resultCode == Activity.RESULT_OK)
+		{
+			if(data.getExtras().getBoolean("isNeedRefresh") == true)
+			{
+				  init(currentAnjarID,false);
+			}
+		}
+	}
+	
 	
 	@Override
 	public void onBackPressed() {
@@ -107,10 +124,10 @@ public class StaticAnjarActivity extends Activity {
 			super.onBackPressed();
 	}
 	
-	public void init(final String anjarID)
+	public void init(final String anjarID,final boolean isStartFromFirst )
 	{
+		currentPage = 0;
 		final ProgressDialog pg = ProgressDialog.show(StaticAnjarActivity.this,"讀取中","請稍候");
-		
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -123,8 +140,16 @@ public class StaticAnjarActivity extends Activity {
 					
 					runOnUiThread(new Runnable() {
 						public void run() {
-							
+						    if(isStartFromFirst == true)
+						    {
 							mPageView.setData(mPages.get(0));
+						    }
+						    else
+						    {
+						    currentPage = mPages.size()-1; 
+						    mPageView.setData(mPages.get(mPages.size()-1));
+						    }
+						    	
 						}
 					});
 					

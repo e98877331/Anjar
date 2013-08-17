@@ -5,27 +5,28 @@ import wcm.ytwhyc.anjar.runningAnjarActivity.ReplyAdapter;
 import wcm.ytwhyc.anjar.runningAnjarActivity.RunningAnjarActivityView;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class RunningAnjarActivity extends Activity {
 	private static final String TAG = "RunningAnjarActivity";
+	
 	ListView mListView;
 	RunningAnjarActivityView mView;
 	TextView mTargetFloor;
 	Button mPrevBtn;
 	Button mRefreshBtn;
 	String mAnjarID;
-	String mCurPageNumber;
+	int mCurPageNumber;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,8 @@ public class RunningAnjarActivity extends Activity {
 		setContentView(mView, layoutParams);
 
 		mAnjarID =getIntent().getExtras().getString("anjarID");
+		mCurPageNumber = getIntent().getExtras().getInt("currentPageNumber") +1;
+		
 		mTargetFloor = mView.targetFloor;
 		mListView = mView.mainListView;
 		mPrevBtn = mView.mPrevBtn;
@@ -90,7 +93,17 @@ public class RunningAnjarActivity extends Activity {
 						public void run() {
 						    mTargetFloor.setText("Target Floor: "+res.targetFloor);
 							mListView.setAdapter(new ReplyAdapter(RunningAnjarActivity.this, res.allReplys));
-							mCurPageNumber = res.currentPageNumber;
+							
+							//TODO: server returned currentPageNumber is start from 1 instead of 0
+							if(mCurPageNumber != Integer.parseInt(res.currentPageNumber)-1)
+							{
+								Intent resultIntent = new Intent();
+								resultIntent.putExtra("isNeedRefresh", true);
+								setResult(Activity.RESULT_OK, resultIntent);
+								finish();
+							
+							}
+							
 						}
 					});
 					
