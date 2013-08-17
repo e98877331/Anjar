@@ -75,6 +75,14 @@ public class RunningAnjarActivity extends Activity {
 		refresh(mAnjarID);
 	}
 	
+    private void onNewPageAdded()
+    {
+		Intent resultIntent = new Intent();
+		resultIntent.putExtra("isNeedRefresh", true);
+		setResult(Activity.RESULT_OK, resultIntent);
+		finish();
+    }
+	
 	public void refresh(final String anjarID)
 	{
 		final ProgressDialog pg = ProgressDialog.show(RunningAnjarActivity.this,"讀取中","請稍候");
@@ -97,10 +105,7 @@ public class RunningAnjarActivity extends Activity {
 							//TODO: server returned currentPageNumber is start from 1 instead of 0
 							if(mCurPageNumber != Integer.parseInt(res.currentPageNumber)-1)
 							{
-								Intent resultIntent = new Intent();
-								resultIntent.putExtra("isNeedRefresh", true);
-								setResult(Activity.RESULT_OK, resultIntent);
-								finish();
+								onNewPageAdded();
 							
 							}
 							
