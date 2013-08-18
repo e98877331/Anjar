@@ -2,6 +2,7 @@ package wcm.ytwhyc.anjar;
 
 import wcm.ytwhyc.anjar.connection.api.GetRunningAnjarData;
 import wcm.ytwhyc.anjar.connection.api.NewReply;
+import wcm.ytwhyc.anjar.provider.UserInformation;
 import wcm.ytwhyc.anjar.runningAnjarActivity.ReplyAdapter;
 import wcm.ytwhyc.anjar.runningAnjarActivity.RunningAnjarActivityView;
 import android.app.Activity;
@@ -123,7 +124,7 @@ final ProgressDialog pg = ProgressDialog.show(RunningAnjarActivity.this,"讀取�
 				// TODO Auto-generated method stub
 				try {
 
-				NewReply nr = new NewReply("guestID", "Guest",mAnjarID, String.valueOf(mCurPageNumber+1), content);
+				NewReply nr = new NewReply("guestID", UserInformation.getInstance().getUserName(),mAnjarID, String.valueOf(mCurPageNumber+1), content);
 					nr.execute();
 					final NewReply.Result res = nr.parseJson();
 					

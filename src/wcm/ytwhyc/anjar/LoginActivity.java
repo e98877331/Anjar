@@ -2,6 +2,7 @@ package wcm.ytwhyc.anjar;
 
 import wcm.ytwhyc.anjar.connection.api.GetNEWS;
 import wcm.ytwhyc.anjar.loginAcitvity.LoginActivityView;
+import wcm.ytwhyc.anjar.provider.UserInformation;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -14,11 +15,13 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout.LayoutParams;
 
 public class LoginActivity extends Activity {
 
 	LoginActivityView mView;
+	EditText mUserName;
 
 	Button browseBtn;
 
@@ -35,11 +38,16 @@ public class LoginActivity extends Activity {
 		layoutParams.gravity = Gravity.CENTER;
 		setContentView(mView, layoutParams);
 
+		mUserName = mView.userName;
+		mUserName.setText("Guest");
+		
 		browseBtn = mView.browseButton;
 		browseBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
+				UserInformation.getInstance().setUserName(mUserName.getText().toString());
+				
 				Intent intent = new Intent(LoginActivity.this, RunningAnjarListActivity.class);
 				startActivity(intent);
 
