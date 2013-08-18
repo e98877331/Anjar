@@ -31,7 +31,8 @@
         <activity android:name="StaticAnjarActivity"
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
         <activity android:name="RunningAnjarActivity"
-             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+             android:theme="@android:style/Theme.Black.NoTitleBar"
+             ></activity>
         
     </application>
        

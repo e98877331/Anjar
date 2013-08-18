@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -50,8 +51,10 @@ public class RunningAnjarActivity extends Activity {
 		setContentView(mView, layoutParams);
 		
 		 //hide keyboard at first
-		 this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
+		 this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+		 
+  
+		 
 		mAnjarID =getIntent().getExtras().getString("anjarID");
 		mCurPageNumber = getIntent().getExtras().getInt("currentPageNumber") +1;
 		
@@ -78,7 +81,9 @@ public class RunningAnjarActivity extends Activity {
 		});
 		
 		mReplyText = mView.mReplyText;
-		
+		mReplyText.setFilters( new InputFilter[] {
+			   new InputFilter.LengthFilter(20)});
+		mReplyText.setSingleLine();
 		mReplyBtn = mView.mNewReplyBtn;
 		mReplyBtn.setOnClickListener(new OnClickListener() {
 			
