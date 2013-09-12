@@ -1,6 +1,6 @@
 package wcm.ytwhyc.anjar.loginAcitvity;
 
-import wcm.ytwhyc.ratiofixer.RatioRelativeLayout;
+import itri.u9lab.towolf.ratiofixer.RatioRelativeLayout;
 import android.content.Context;
 import android.widget.Button;
 import android.widget.EditText;

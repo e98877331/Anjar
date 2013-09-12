@@ -1,11 +1,12 @@
 package wcm.ytwhyc.anjar;
 
+import itri.u9lab.towolf.ratiofixer.RatioRelativeLayout;
+
 import java.util.ArrayList;
 
 import wcm.ytwhyc.anjar.connection.api.GetStaticAnjarData;
 import wcm.ytwhyc.anjar.datatype.AnjarPage;
 import wcm.ytwhyc.anjar.staticAnjarActivity.StaticAnjarPage;
-import wcm.ytwhyc.ratiofixer.RatioRelativeLayout;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.pm.ActivityInfo;

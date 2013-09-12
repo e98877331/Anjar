@@ -1,13 +1,8 @@
 package wcm.ytwhyc.anjar.staticAnjarActivity;
 
 
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
-
+import itri.u9lab.towolf.ratiofixer.RatioFixer;
 import wcm.ytwhyc.anjar.datatype.AnjarPage;
-import wcm.ytwhyc.anjar.runningAnjarListActivity.AnjarListItemLayout;
-import wcm.ytwhyc.ratiofixer.RatioFixer;
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -15,6 +10,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
 
 public class StaticAnjarPage extends RelativeLayout {
 
