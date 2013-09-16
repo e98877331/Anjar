@@ -1,12 +1,13 @@
 package wcm.ytwhyc.anjar;
 
+import itri.u9lab.towolf.ratiofixer.RatioRelativeLayout;
+
 import java.util.ArrayList;
 
 import wcm.ytwhyc.anjar.connection.api.GetRunningAnjarData;
 import wcm.ytwhyc.anjar.connection.api.GetStaticAnjarData;
 import wcm.ytwhyc.anjar.datatype.AnjarPage;
 import wcm.ytwhyc.anjar.staticAnjarActivity.StaticAnjarPage;
-import wcm.ytwhyc.ratiofixer.RatioRelativeLayout;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -96,6 +97,7 @@ public class StaticAnjarActivity extends Activity {
 		mView.addView(mPrevBtn, 200, 100, 20, 1130);
 		mView.addView(mNextBtn, 200, 100, 548, 1130);
 
+<<<<<<< HEAD
 		currentAnjarID =getIntent().getExtras().getString("anjarID");
         init(currentAnjarID,true);
 		
@@ -128,6 +130,19 @@ public class StaticAnjarActivity extends Activity {
 	{
 		currentPage = 0;
 		final ProgressDialog pg = ProgressDialog.show(StaticAnjarActivity.this,"讀取中","請稍候");
+=======
+		String anjarID =getIntent().getExtras().getString("anjarID");
+        init(anjarID);
+		
+	}
+	
+	
+	
+	public void init(final String anjarID)
+	{
+		final ProgressDialog pg = ProgressDialog.show(StaticAnjarActivity.this,"讀取中","請稍候");
+		
+>>>>>>> 145507549ab238dbc22ed2bb3dbbd45866e00f14
 		new Thread(new Runnable() {
 			@Override
 			public void run() {

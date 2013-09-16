@@ -1,11 +1,9 @@
 package wcm.ytwhyc.anjar.runningAnjarListActivity;
 
-import wcm.ytwhyc.ratiofixer.RatioRelativeLayout;
+import itri.u9lab.towolf.ratiofixer.RatioRelativeLayout;
 import android.content.Context;
 import android.graphics.Color;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class RunningAnjarListActivityView extends RatioRelativeLayout{
