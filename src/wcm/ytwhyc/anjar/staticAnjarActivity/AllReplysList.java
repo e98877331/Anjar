@@ -1,9 +1,10 @@
 package wcm.ytwhyc.anjar.staticAnjarActivity;
 
+import itri.u9lab.towolf.ratiofixer.RatioFixer;
+
 import java.util.ArrayList;
 
 import wcm.ytwhyc.anjar.datatype.Reply;
-import wcm.ytwhyc.ratiofixer.RatioFixer;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;

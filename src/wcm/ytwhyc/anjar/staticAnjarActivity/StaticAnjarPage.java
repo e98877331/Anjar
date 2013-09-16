@@ -115,9 +115,6 @@ public class StaticAnjarPage extends RelativeLayout {
 		mImage.setImageBitmap(null);
 	}
 	
-	public void clear()
-	{
-		mImage.setImageBitmap(null);
-	}
+
 
 }

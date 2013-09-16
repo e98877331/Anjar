@@ -1,9 +1,10 @@
 package wcm.ytwhyc.anjar.runningAnjarActivity;
 
-import wcm.ytwhyc.ratiofixer.RatioRelativeLayout;
+
+import itri.u9lab.towolf.ratiofixer.RatioRelativeLayout;
 import android.content.Context;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
